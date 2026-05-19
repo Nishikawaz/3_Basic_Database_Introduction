@@ -30,3 +30,18 @@ FROM 'C:/Users/kento/OneDrive/Desktop/Database_Introduction/Data/dataset/order_s
 
 COPY staging.order_audit (audit_id, order_id, field_name, old_value, new_value, changed_at, changed_by) 
 FROM 'C:/Users/kento/OneDrive/Desktop/Database_Introduction/Data/dataset/order_audit.csv' WITH CSV HEADER DELIMITER ',';
+
+-- Comandos de SELECT para conteo de filas por tabla en el esquema staging
+SELECT 'customers' AS tabla, COUNT(*) AS total_filas FROM staging.customers
+UNION ALL
+SELECT 'products', COUNT(*) FROM staging.products
+UNION ALL
+SELECT 'orders', COUNT(*) FROM staging.orders
+UNION ALL
+SELECT 'order_items', COUNT(*) FROM staging.order_items
+UNION ALL
+SELECT 'payments', COUNT(*) FROM staging.payments
+UNION ALL
+SELECT 'order_status_history', COUNT(*) FROM staging.order_status_history
+UNION ALL
+SELECT 'order_audit', COUNT(*) FROM staging.order_audit; 
