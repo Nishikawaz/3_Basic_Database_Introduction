@@ -1,5 +1,4 @@
 -- Active: 1779159883170@@127.0.0.1@5432@penguin_academy_db
-
 DROP SCHEMA IF EXISTS staging CASCADE;
 CREATE SCHEMA staging;
 
