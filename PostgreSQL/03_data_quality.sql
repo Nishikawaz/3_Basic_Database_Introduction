@@ -64,3 +64,14 @@ JOIN staging.payments p ON o.order_id = p.order_id
 WHERE o.current_status IN ('shipped', 'delivered') 
   AND p.payment_status IN ('rejected', 'failed', 'pending')
 LIMIT 100;
+
+-- Detecta los pedidos creados con order total = 0
+-- Audit de Completitud e Integridad vacía --> Verifica que los valores a tener en cuenta NO SEAN 0.
+SELECT 
+    o.order_id, 
+    o.order_datetime, 
+    o.order_total, 
+    o.current_status
+FROM staging.orders o
+LEFT JOIN staging.order_items oi ON o.order_id = oi.order_id
+WHERE oi.order_item_id IS NULL;
