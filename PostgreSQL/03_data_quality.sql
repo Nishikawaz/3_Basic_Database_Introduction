@@ -17,4 +17,16 @@ FROM staging.order_audit
 WHERE field_name = 'order_total'
 AND (new_value ~ '[A-Za-z]' OR old_value ~ '[A-Za-z]');  
 
+-- Detecta ítems donde el descuento fue ignorado en el cobro real (El total según CSV es el valor que fijaron en line_total)
+-- Audit de Consistencia Matemática --> Busca errores de cálculo heredados, se puede suponer que no se aplicó bien la fórmula en la celda "line_total" puesto que no se descuenta.
+SELECT 
+    order_item_id, 
+    quantity, 
+    unit_price, 
+    discount_rate,
+    line_total AS total_segun_csv,
+    (quantity::NUMERIC * unit_price::NUMERIC * (1 - discount_rate::NUMERIC)) AS total_real_esperado
+FROM staging.order_items
+WHERE discount_rate::NUMERIC > 0
+AND line_total::NUMERIC = (quantity::NUMERIC * unit_price::NUMERIC);
 
