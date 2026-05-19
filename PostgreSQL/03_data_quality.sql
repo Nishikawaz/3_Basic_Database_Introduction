@@ -15,6 +15,6 @@ SELECT
     changed_at
 FROM staging.order_audit
 WHERE field_name = 'order_total'
-AND (new_value ~ '[A-Za-z]' OR old_value ~ '[A-Za-z]'); 
+AND (new_value ~ '[A-Za-z]' OR old_value ~ '[A-Za-z]');  
 
 
