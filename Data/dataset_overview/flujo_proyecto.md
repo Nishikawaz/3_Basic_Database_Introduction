@@ -6,4 +6,4 @@ Flujo de trabajo
 2) Se añade el archivo "justificación" donde se explica la decisión detrás de la elección de este motor de BD. 
 3) Se añade el archivo "dataset_datatypes" con los posibles tipos de datos de cada columna de cada tabla.
 4) Se crean los comandos SQL para el staging de datos en el "01_data_staging" 
-5) 
+5)  
