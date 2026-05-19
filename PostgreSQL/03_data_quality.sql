@@ -30,3 +30,24 @@ FROM staging.order_items
 WHERE discount_rate::NUMERIC > 0
 AND line_total::NUMERIC = (quantity::NUMERIC * unit_price::NUMERIC);
 
+-- Detecta clientes duplicados por nombre que tienen IDs diferentes
+-- Audit de Unicidad y Duplicación --> Para verificación de valores únicos y duplicados
+SELECT 
+    c1.customer_id AS id_1, 
+    c2.customer_id AS id_2, 
+    c1.full_name AS cliente, 
+    -- Comparativa de Emails
+    c1.email AS email_1, 
+    c2.email AS email_2,
+    -- Comparativa de Teléfonos
+    c1.phone AS phone_1, 
+    c2.phone AS phone_2,
+    -- Comparativa de Ciudades
+    c1.city AS city_1, 
+    c2.city AS city_2
+FROM staging.customers c1
+JOIN staging.customers c2 ON c1.full_name = c2.full_name
+-- Con la distinción de 1 sola tanda de combinación en el self join
+WHERE c1.customer_id < c2.customer_id 
+ORDER BY c1.full_name
+LIMIT 100;
