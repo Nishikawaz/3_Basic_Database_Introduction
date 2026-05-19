@@ -51,3 +51,16 @@ JOIN staging.customers c2 ON c1.full_name = c2.full_name
 WHERE c1.customer_id < c2.customer_id 
 ORDER BY c1.full_name
 LIMIT 100;
+
+-- Detecta mercadería enviada o entregada con cobros rechazados o fallidos.
+-- Audit de Regla de Flujo / Estado  --> Rompe con el esquema lógico del modelo de negocio
+SELECT 
+    o.order_id, 
+    o.current_status AS estado_logistico, 
+    p.payment_id,
+    p.payment_status AS estado_financiero
+FROM staging.orders o
+JOIN staging.payments p ON o.order_id = p.order_id
+WHERE o.current_status IN ('shipped', 'delivered') 
+  AND p.payment_status IN ('rejected', 'failed', 'pending')
+LIMIT 100;
