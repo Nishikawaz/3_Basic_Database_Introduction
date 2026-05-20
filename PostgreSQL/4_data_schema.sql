@@ -1,6 +1,28 @@
+-- Se echan las tablas (Esto si se llegara a iniciar nuevamente todo el proceso)
+DROP TABLE IF EXISTS 
+    customers,
+    products,
+    orders,
+    order_items,
+    payments,
+    order_status_history,
+    order_audit
+CASCADE;
 
+-- Se echan los types (En este caso los ENUMS)
+DROP TYPE IF EXISTS
+    customer_section,
+    product_category,
+    order_channel,
+    order_status,
+    currency_code,
+    payment_method,
+    payment_status_check,
+    status_actor,
+    audit_responsible,
+    order_reason
+CASCADE;
 
--- Listado de los ENUMS para cada caso
 CREATE TYPE customer_section AS ENUM ('retail', 'wholesale', 'online_only', 'vip');
 CREATE TYPE product_category AS ENUM ('automotive', 'beauty', 'books', 'electronics','fashion', 'grocery', 'home', 'office', 'sports', 'toys');
 CREATE TYPE order_channel AS ENUM ('web', 'mobile', 'phone', 'store');
