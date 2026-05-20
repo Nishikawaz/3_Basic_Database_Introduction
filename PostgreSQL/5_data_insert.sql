@@ -25,7 +25,7 @@ SELECT
     TRIM(email),
     TRIM(phone),
     TRIM(city),
-    LOWER(TRIM(segment))::customer_segment,
+    LOWER(TRIM(segment))::customer_section,
     created_at::TIMESTAMP,
     CASE
         WHEN LOWER(TRIM(is_active)) IN ('1') THEN TRUE
@@ -68,7 +68,7 @@ INSERT INTO orders (
     order_id,
     customer_id,
     order_datetime,
-    "channel",
+    channel,
     currency,
     current_status,
     order_total,
@@ -114,7 +114,7 @@ INSERT INTO payments (
     payment_id,
     order_id,
     payment_datetime,
-    "method",
+    method,
     payment_status,
     amount,
     currency
@@ -124,7 +124,7 @@ SELECT
     order_id::INTEGER,
     payment_datetime::TIMESTAMP,
     LOWER(TRIM(method))::payment_method,
-    LOWER(TRIM(payment_status))::payment_status_val,
+    LOWER(TRIM(payment_status))::payment_status_check,
     amount::NUMERIC(10,2),
     UPPER(TRIM(currency))::currency_code
 FROM staging_payments;
@@ -132,7 +132,7 @@ FROM staging_payments;
 INSERT INTO order_status_history (
     status_history_id,
     order_id,
-    "status",
+    status,
     changed_at,
     changed_by,
     reason
@@ -162,5 +162,5 @@ SELECT
     NULLIF(TRIM(old_value), ''),
     NULLIF(TRIM(new_value), ''),
     changed_at::TIMESTAMP,
-    LOWER(TRIM(changed_by))::audit_actor
+    LOWER(TRIM(changed_by))::audit_responsible
 FROM staging_order_audit;

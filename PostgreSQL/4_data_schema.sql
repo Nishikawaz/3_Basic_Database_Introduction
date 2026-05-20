@@ -40,7 +40,7 @@ CREATE TABLE customers (
     email VARCHAR(200) NOT NULL UNIQUE,
     phone VARCHAR(25) NOT NULL, 
     city VARCHAR(100) NOT NULL,
-    segment customer_segment NOT NULL,
+    segment customer_section NOT NULL,
     created_at TIMESTAMP NOT NULL,
     is_active BOOLEAN NOT NULL DEFAULT TRUE,
     deleted_at TIMESTAMP, 
@@ -105,7 +105,7 @@ CREATE TABLE payments (
     order_id INTEGER NOT NULL,
     payment_datetime TIMESTAMP NOT NULL,
     "method" payment_method NOT NULL,
-    payment_status payment_status_val NOT NULL,
+    payment_status payment_status_check NOT NULL,
     amount NUMERIC(12,2) NOT NULL CHECK (amount >= 0),
     currency currency_code NOT NULL,
     CONSTRAINT fk_payments_order FOREIGN KEY (order_id) REFERENCES orders(order_id)
@@ -128,7 +128,7 @@ CREATE TABLE order_audit (
     old_value TEXT,
     new_value TEXT,
     changed_at TIMESTAMP NOT NULL,
-    changed_by audit_actor NOT NULL,
+    changed_by audit_responsible NOT NULL,
     CONSTRAINT fk_audit_order FOREIGN KEY (order_id) REFERENCES orders(order_id)
 );
 -- Creación de Índices para los FKs
