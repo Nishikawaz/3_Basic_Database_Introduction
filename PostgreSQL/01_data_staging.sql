@@ -6,7 +6,8 @@ DROP TABLE IF EXISTS
     staging_order_items,
     staging_order_status_history,
     staging_order_audit,
-    staging_payments CASCADE;
+    staging_payments 
+    CASCADE;
 
 CREATE TABLE staging.customers (
     customer_id TEXT,

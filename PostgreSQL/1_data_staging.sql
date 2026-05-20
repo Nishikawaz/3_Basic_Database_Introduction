@@ -1,4 +1,12 @@
 DROP TABLE IF EXISTS
+    staging_customers,
+    staging_products,
+    staging_orders,
+    staging_order_items,
+    staging_payments,
+    staging_order_status_history,
+    staging_order_audit
+    CASCADE;
 
 CREATE TABLE staging_customers (
     customer_id TEXT,
