@@ -46,3 +46,14 @@ CREATE TABLE staging_order_items (
     discount_rate TEXT,
     line_total TEXT
 );
+
+CREATE TABLE staging_payments (
+    payment_id TEXT,
+    order_id TEXT,
+    payment_datetime TEXT,
+    method TEXT,
+    payment_status TEXT,
+    amount TEXT,
+    currency TEXT
+);
+
