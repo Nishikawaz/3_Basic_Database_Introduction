@@ -1,3 +1,4 @@
+-- Se echan las tablas (si se llegara a iniciar nuevamente)
 DROP TABLE IF EXISTS
     staging_customers,
     staging_products,
@@ -8,6 +9,7 @@ DROP TABLE IF EXISTS
     staging_order_audit
     CASCADE;
 
+-- A partir de aquí, se crean las tablas staging
 CREATE TABLE staging_customers (
     customer_id TEXT,
     full_name TEXT,
@@ -59,7 +61,7 @@ CREATE TABLE staging_payments (
     payment_id TEXT,
     order_id TEXT,
     payment_datetime TEXT,
-    method TEXT,
+    "method" TEXT,
     payment_status TEXT,
     amount TEXT,
     currency TEXT
@@ -68,7 +70,7 @@ CREATE TABLE staging_payments (
 CREATE TABLE staging_order_status_history (
     status_history_id  TEXT,
     order_id TEXT,
-    status TEXT,
+    "status" TEXT,
     changed_at TEXT,
     changed_by TEXT,
     reason TEXT
