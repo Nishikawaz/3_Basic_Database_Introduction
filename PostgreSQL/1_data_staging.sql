@@ -29,10 +29,20 @@ CREATE TABLE staging_orders (
     order_id TEXT,
     customer_id TEXT,
     order_datetime TEXT,
-    channel TEXT,
+    "channel" TEXT,
     currency TEXT,
     current_status TEXT,
     is_active TEXT,
     deleted_at TEXT,
     order_total TEXT
+);
+
+CREATE TABLE staging_order_items (
+    order_item_id TEXT,
+    order_id TEXT,
+    product_id TEXT,
+    quantity TEXT,
+    unit_price TEXT,
+    discount_rate TEXT,
+    line_total TEXT
 );
