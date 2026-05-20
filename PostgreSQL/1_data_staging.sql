@@ -1,4 +1,4 @@
--- Se echan las tablas (si se llegara a iniciar nuevamente)
+-- Se echan las tablas (Esto si se llegara a iniciar nuevamente todo el proceso)
 DROP TABLE IF EXISTS
     staging_customers,
     staging_products,

@@ -1,7 +1,4 @@
--- Carga masiva usando el comando COPY del Servidor 
--- COPY permite la transferencia de datos de manera rápida y eficiente entre tabla/s de la BD y files externos
--- Si se llegara a mover el path del archivo, se debe cambiar el FROM para que se ejecute correctamente el comando
-
+-- Se eliminan los valores de las tablas
 TRUNCATE TABLE
 staging_customers,
 staging_products,
@@ -12,6 +9,9 @@ staging_order_status_history,
 staging_order_audit
 CASCADE;
 
+-- Carga masiva usando el comando COPY
+-- COPY permite la transferencia de datos de manera rápida y eficiente entre tabla/s de la BD y files externos
+-- Si se llegara a mover el path del archivo, se debe cambiar el FROM para que se ejecute correctamente el comando
 COPY staging_customers (customer_id, full_name, email, phone, city, segment, created_at, is_active, deleted_at) 
 FROM 'C:/Users/kento/OneDrive/Desktop/Database_Introduction/Data/dataset/customers.csv' WITH CSV HEADER DELIMITER ',';
 
