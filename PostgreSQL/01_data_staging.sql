@@ -1,6 +1,13 @@
 -- Active: 1779159883170@@127.0.0.1@5432@penguin_academy_db
-DROP SCHEMA IF EXISTS staging CASCADE;
-CREATE SCHEMA staging;
+DROP TABLE IF EXISTS 
+    staging_customers, 
+    staging_products,
+    staging_orders,
+    staging_order_items,
+    staging_order_status_history,
+    staging_order_audit,
+    staging_payments CASCADE;
+
 
 CREATE TABLE staging.customers (
     customer_id TEXT,
@@ -49,16 +56,6 @@ CREATE TABLE staging.order_items (
     line_total TEXT
 );
 
-CREATE TABLE staging.payments (
-    payment_id TEXT,
-    order_id TEXT,
-    payment_datetime TEXT,
-    "method" TEXT,
-    payment_status TEXT,
-    amount TEXT,
-    currency TEXT
-);
-
 CREATE TABLE staging.order_status_history (
     status_history_id TEXT,
     order_id TEXT,
@@ -76,4 +73,14 @@ CREATE TABLE staging.order_audit (
     new_value TEXT,
     changed_at TEXT,
     changed_by TEXT
+);
+
+CREATE TABLE staging.payments (
+    payment_id TEXT,
+    order_id TEXT,
+    payment_datetime TEXT,
+    "method" TEXT,
+    payment_status TEXT,
+    amount TEXT,
+    currency TEXT
 );
