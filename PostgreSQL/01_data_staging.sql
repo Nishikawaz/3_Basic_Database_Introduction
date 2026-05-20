@@ -8,7 +8,6 @@ DROP TABLE IF EXISTS
     staging_order_audit,
     staging_payments CASCADE;
 
-
 CREATE TABLE staging.customers (
     customer_id TEXT,
     full_name TEXT,

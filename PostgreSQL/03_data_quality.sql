@@ -13,7 +13,7 @@ SELECT
     old_value, 
     new_value,
     changed_at
-FROM staging.order_audit
+FROM staging_order_audit
 WHERE field_name = 'order_total'
 AND (new_value ~ '[A-Za-z]' OR old_value ~ '[A-Za-z]');  
 
@@ -26,7 +26,7 @@ SELECT
     discount_rate,
     line_total AS total_segun_csv,
     (quantity::NUMERIC * unit_price::NUMERIC * (1 - discount_rate::NUMERIC)) AS total_real_esperado
-FROM staging.order_items
+FROM staging_order_items
 WHERE discount_rate::NUMERIC > 0
 AND line_total::NUMERIC = (quantity::NUMERIC * unit_price::NUMERIC);
 
@@ -45,8 +45,8 @@ SELECT
     -- Comparativa de Ciudades
     c1.city AS city_1, 
     c2.city AS city_2
-FROM staging.customers c1
-JOIN staging.customers c2 ON c1.full_name = c2.full_name
+FROM staging_customers c1
+JOIN staging_customers c2 ON c1.full_name = c2.full_name
 -- Con la distinción de 1 sola tanda de combinación en el self join
 WHERE c1.customer_id < c2.customer_id 
 ORDER BY c1.full_name
@@ -59,8 +59,8 @@ SELECT
     o.current_status AS estado_logistico, 
     p.payment_id,
     p.payment_status AS estado_financiero
-FROM staging.orders o
-JOIN staging.payments p ON o.order_id = p.order_id
+FROM staging_orders o
+JOIN staging_payments p ON o.order_id = p.order_id
 WHERE o.current_status IN ('shipped', 'delivered') 
   AND p.payment_status IN ('rejected', 'failed', 'pending')
 LIMIT 100;
@@ -72,6 +72,6 @@ SELECT
     o.order_datetime, 
     o.order_total, 
     o.current_status
-FROM staging.orders o
-LEFT JOIN staging.order_items oi ON o.order_id = oi.order_id
+FROM staging_orders o
+LEFT JOIN staging_order_items oi ON o.order_id = oi.order_id
 WHERE oi.order_item_id IS NULL;

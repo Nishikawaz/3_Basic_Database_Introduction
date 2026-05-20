@@ -7,6 +7,3 @@ Flujo de trabajo
 3) Se añade el archivo "dataset_datatypes" con los posibles tipos de datos de cada columna de cada tabla.
 4) Se crean los comandos SQL para el staging de datos en el "01_data_staging" 
 5) Se crea un file "01.5_data_loading_route" con un ejecutador psql para cargar las tablas Staging que habilita las rutas internas de la PC.
-6) Se crean los comandos SQL para el loading de los datos y se realiza un "Truncate Table" y luego las copias de los valores de los datos (de forma rápida) en el "02_data_loading" Si bien se cargaron los valores, los datatypes siguen siendo "TEXT".
-7) "03_data_quality" corresponde al file de Auditoría previa a la asignación de Data Types, se sigue el lineamiento de los conceptos de Ingeniería de Datos.
-8) 
