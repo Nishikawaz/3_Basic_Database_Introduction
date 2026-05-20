@@ -66,3 +66,12 @@ CREATE TABLE staging_order_status_history (
     reason TEXT
 );
 
+CREATE TABLE staging_order_audit (
+    audit_id TEXT,
+    order_id TEXT,
+    field_name TEXT,
+    old_value TEXT,
+    new_value TEXT,
+    changed_at TEXT,
+    changed_by TEXT
+);
