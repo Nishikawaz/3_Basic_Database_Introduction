@@ -57,3 +57,12 @@ CREATE TABLE staging_payments (
     currency TEXT
 );
 
+CREATE TABLE staging_order_status_history (
+    status_history_id  TEXT,
+    order_id TEXT,
+    status TEXT,
+    changed_at TEXT,
+    changed_by TEXT,
+    reason TEXT
+);
+
