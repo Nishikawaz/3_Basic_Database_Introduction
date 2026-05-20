@@ -109,3 +109,15 @@ CREATE TABLE order_audit (
     changed_by audit_actor NOT NULL,
     CONSTRAINT fk_audit_order FOREIGN KEY (order_id) REFERENCES orders(order_id)
 );
+-- Creación de Índices para los FKs
+CREATE INDEX idx_orders_customer_id ON orders(customer_id);
+CREATE INDEX idx_order_items_order_id ON order_items(order_id);
+CREATE INDEX idx_order_items_product_id ON order_items(product_id);
+CREATE INDEX idx_payments_order_id ON payments(order_id);
+CREATE INDEX idx_status_history_order_id ON order_status_history(order_id);
+CREATE INDEX idx_audit_order_id ON order_audit(order_id);
+
+-- Creación de Índices para columnas específicas
+CREATE INDEX idx_orders_current_status ON orders(current_status);
+CREATE INDEX idx_orders_datetime ON orders(order_datetime DESC);
+CREATE INDEX idx_payments_status ON payments(payment_status); 
