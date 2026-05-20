@@ -2,7 +2,17 @@
 -- COPY permite la transferencia de datos de manera rápida y eficiente entre tabla/s de la BD y files externos
 -- Si se llegara a mover el path del archivo, se debe cambiar el FROM para que se ejecute correctamente el comando
 
-COPY staging._customers (customer_id, full_name, email, phone, city, segment, created_at, is_active, deleted_at) 
+TRUNCATE TABLE
+staging_customers,
+staging_products,
+staging_orders,
+staging_order_items,
+staging_payments,
+staging_order_status_history,
+staging_order_audit
+CASCADE;
+
+COPY staging_customers (customer_id, full_name, email, phone, city, segment, created_at, is_active, deleted_at) 
 FROM 'C:/Users/kento/OneDrive/Desktop/Database_Introduction/Data/dataset/customers.csv' WITH CSV HEADER DELIMITER ',';
 
 COPY staging_products (product_id, sku, product_name, category, brand, unit_price, unit_cost, created_at, is_active, deleted_at) 
@@ -22,3 +32,4 @@ FROM 'C:/Users/kento/OneDrive/Desktop/Database_Introduction/Data/dataset/order_s
 
 COPY staging_order_audit (audit_id, order_id, field_name, old_value, new_value, changed_at, changed_by) 
 FROM 'C:/Users/kento/OneDrive/Desktop/Database_Introduction/Data/dataset/order_audit.csv' WITH CSV HEADER DELIMITER ',';
+
