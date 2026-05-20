@@ -24,3 +24,15 @@ CREATE TABLE staging_products (
     is_active TEXT,
     deleted_at TEXT
 );
+
+CREATE TABLE staging_orders (
+    order_id TEXT,
+    customer_id TEXT,
+    order_datetime TEXT,
+    channel TEXT,
+    currency TEXT,
+    current_status TEXT,
+    is_active TEXT,
+    deleted_at TEXT,
+    order_total TEXT
+);
