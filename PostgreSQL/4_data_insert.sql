@@ -8,6 +8,13 @@ TRUNCATE TABLE
     order_audit
 CASCADE;
 
+-- ::(DATATYPE), es un casteo. Transforma el TEXT del staging al DataType correcto. 
+-- ::(ENUM), es un casteo para indicar ENUMS.
+-- TRIM, elimina los espacios en blanco al inicio y al final.
+-- CASE WHEN, es la lógica condicional de SQL. Se traducen a booleanos.
+-- NULLIF, Si el texto está vacío "", lo convierte en un valor NULL.
+-- NUMERIC(X,Y), Convierte el texto en número decimal que permite hasta "X" dígitos y "Y" decimales (sin redondeo).
+
 INSERT INTO customers (
     customer_id,
     full_name,
@@ -32,7 +39,7 @@ SELECT
         WHEN LOWER(TRIM(is_active)) IN ('0') THEN FALSE
         ELSE NULL
     END,
-    NULLIF(TRIM(deleted_at), '')::TIMESTAMP --TEXTO VACIO A NULL
+    NULLIF(TRIM(deleted_at), '')::TIMESTAMP 
 FROM staging_customers;
 
 INSERT INTO products (

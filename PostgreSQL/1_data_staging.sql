@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS
     staging_order_status_history,
     staging_order_audit
     CASCADE;
+-- Cascade elimina los datos de las tablas dependientes en el orden correcto para no romper reglas de integridad.
 
 -- A partir de aquí, se crean las tablas staging
 CREATE TABLE staging_customers (
