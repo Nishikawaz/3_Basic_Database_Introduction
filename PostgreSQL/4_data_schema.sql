@@ -44,8 +44,10 @@ CREATE TABLE customers (
     created_at TIMESTAMP NOT NULL,
     is_active BOOLEAN NOT NULL DEFAULT TRUE,
     deleted_at TIMESTAMP, 
-    CONSTRAINT chk_customer_soft_delete CHECK (
+    -- Este soft_delete es un borrado lógico, no se borra físicamente al cliente. 
+    -- Se modifica el estado de actividad.
         (is_active = TRUE  AND deleted_at IS NULL) OR
+    CONSTRAINT chk_customer_soft_delete CHECK ( 
         (is_active = FALSE AND deleted_at IS NOT NULL)
     )
 );

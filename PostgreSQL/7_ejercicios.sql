@@ -5,7 +5,7 @@
 --WHERE
 --ORDER BY
 
--- 1) Litar todos los nombres y correos de clientes
+-- 1) Litar todos los nombres y correos de clientes 
 SELECT c.full_name, c.email
 FROM customers as c;
 
