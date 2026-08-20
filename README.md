@@ -141,12 +141,3 @@ Challenge de introducción a bases de datos. La consigna pedía elegir un motor 
 La estructura en dos capas — staging crudo y esquema tipado — es la respuesta a la parte de la consigna sobre forzar y detectar fallos de integridad: permite ver exactamente qué fila y qué columna rompen, en lugar de recibir un abort genérico.
 
 ---
-
-## Limitaciones conocidas
-
-- **El ejercicio 16 de `6_ejercicios.sql` está sin resolver.** Queda comentado en el archivo.
-- **`COPY` requiere permisos de lectura de archivos del servidor.** No funciona contra una base remota sin cambiar a `\copy`.
-- **La conversión de `is_active` solo contempla `'1'` y `'0'`.** Es lo que trae este dataset, pero un CSV con `true`/`false` produciría `NULL` contra una columna `NOT NULL` y abortaría el `INSERT`.
-- **Las tablas staging quedan en la base después de la migración.** No hay un paso de limpieza final que las descarte.
-- **Sin transacciones explícitas entre scripts.** Cada archivo se ejecuta por separado; si `4_data_insert.sql` falla a la mitad, hay que volver a correrlo entero (es idempotente, así que se puede).
-- **Los ejercicios no llevan `LIMIT`.** Varios devuelven cientos de miles de filas; en una sesión interactiva conviene agregarlo.
