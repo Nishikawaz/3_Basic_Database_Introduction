@@ -132,7 +132,7 @@ SELECT
     payment_datetime::TIMESTAMP,
     LOWER(TRIM(method))::payment_method,
     LOWER(TRIM(payment_status))::payment_status_check,
-    amount::NUMERIC(10,2),
+    amount::NUMERIC(12,2),  -- 12,2 para coincidir con el tipo declarado en 3_data_schema.sql
     UPPER(TRIM(currency))::currency_code
 FROM staging_payments;
 
